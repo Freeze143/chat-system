@@ -1,0 +1,160 @@
+body {
+
+    width: 99%;
+    height: 950px;
+    background-color:  #E9EDF0;
+    overflow: hidden;
+    
+}
+
+#intro {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #000000;
+    height: 10%;
+    width: 100%;
+}
+
+#icon{
+
+    height:50px;	
+    width: 50px;
+    margin: 0px 10px 0px 10px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+#info{
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+#name{
+
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    margin-bottom: 2px;
+
+}
+
+#status{
+    
+    font-family: Rubik;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15px;
+
+}
+
+form {
+
+    margin-top: 40px;
+    bottom: 5px;
+    width: 100%;
+    height: 10%;
+    border-radius: 12px 12px 0px 0px;
+    background-color: #FBFDFF;
+    border: none;
+    padding: 0;
+    
+}
+ 
+form input { 
+
+    height: 75px;
+    width: 99%;
+    color: #000000;
+    border: none;
+    padding: 15px 0px 0px 16px;
+    border-radius: 12px 12px 0px 0px;
+}
+ 
+form button {
+
+    background: #F9A369;
+    border: none;
+    padding: 20px;
+    margin: 10px;
+    font-size: 20px;
+    border-radius: 20px;
+
+}
+
+#send-item{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #FBFDFF;
+    border-radius: 0px 0px 12px 12px;
+}
+
+#attached-icon{
+
+    width: 18px ;
+    height: 20px;
+}
+
+#messages {
+    /* display: list-item; */
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    /* line-height: 26px; */
+    color: #5E6C84;
+    width: 100%;
+    height: 70%;
+    overflow: auto;
+    
+    
+   
+}
+ 
+#send-msg  {
+
+    width: fit-content;
+    padding: 6px 20px;
+    margin: 8px;
+    background-color: #c2d3e9;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    box-sizing: border-box;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow-wrap: normal;
+    float: right;
+    clear: right;
+    
+}
+
+#received-msg{ 
+
+    width: fit-content;
+    padding: 6px 20px;
+    margin: 8px;
+    background-color: #f3f3f3;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    float: left;
+    clear: left;
+    overflow-wrap: normal;
+    
+}
+
+image{
+    width: 100px;
+    height: 100px;
+}

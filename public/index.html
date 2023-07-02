@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<title>ChatRoom</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel = "stylesheet" href="style.css">
+
+		<script>
+			var name = prompt("Please enter your name");
+		</script>
+
+	</head>
+
+	<body>
+		
+		<div id="intro">
+
+			<div id="icon"></div>
+
+			<div id="info">
+
+				<div id="name">Admin</div>
+
+				<div id="status">Online</div>
+
+			</div>
+			
+		</div>
+		
+		<div id="messages"></div>
+		<!-- <div id="messages-send"></div> -->
+		
+		
+		<form action="" id="form">
+
+			<input id="m" placeholder="Enter your message..." autocomplete="off"/>
+
+			<div id="send-item">
+
+				<div id="attached-icon"></div>
+
+				<button></button>
+
+			</div>
+		
+		</form>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script>
+			
+				var socket = io();
+				var myID;
+				var allUsers = [];
+
+				var out = document.getElementById("messages");
+				var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
+
+				socket.emit('joining msg', name, getConnectedUsers);
+
+				// socket.on('new-user-connected', (data) => {
+
+				// 	console.log('new-user', data)
+				// })
+
+				$('form').submit(function(e) {
+
+					e.preventDefault();            // will prevent page 
+
+					if($('#img'))
+						socket.emit('send-img',$('#img'));
+
+					socket.emit('chat message', {username: 'admin', msg: $('#m').val()});
+
+					var msgDiv = document.createElement('div');
+					msgDiv.id ="send-msg";
+					msgDiv.innerText = ($('#m').val());
+					out.appendChild(msgDiv);
+					$('#m').val('');
+
+					if(isScrolledToBottom){
+
+						out.scrollTop = out.scrollHeight - out.clientHeight;
+					}
+						
+					return false;
+				});
+
+				
+				socket.on('chat message', function(msg){
+					
+
+					var msgDiv = document.createElement('div');
+					msgDiv.id ="received-msg";
+					msgDiv.innerText = msg.msg;
+					out.appendChild(msgDiv);
+				
+
+					// $('#messages').append($('<div  id="received-msg">').text(msg));
+					// $('#messages').append($('<br>'));
+
+					if(isScrolledToBottom){
+
+						out.scrollTop = out.scrollHeight - out.clientHeight;
+					}
+					
+				});
+
+				socket.on('send-img', (image) => {
+
+					var msgDiv = document.createElement('div');
+					msgDiv.id ="received-msg";
+					
+					var img = document.createElement('img');
+					img.src = image.msg;
+
+					msgDiv.appendChild(img);
+					out.appendChild(msgDiv);
+					
+					
+
+					if(isScrolledToBottom){
+
+						out.scrollTop = out.scrollHeight - out.clientHeight;
+					}
+				
+				});
+
+				function getConnectedUsers(data){
+					console.log(data)
+				}
+			
+		</script>
+
+	</body>
+
+</html>
