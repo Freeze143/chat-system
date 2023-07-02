@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
 
   socket.on('send-img', (data) => {
     
-    let recipientID = connectedUsers.filter(aUser => aUser.username.toLowerCase() === data.username.toLowerCase()).length ? connectedUsers.filter(aUser => aUser.username.toLowerCase() === data.username.toLowerCase())[0].clientID : 0;
+    let recipientID = connectedUsers.filter(aUser => aUser.username === data.username).length ? connectedUsers.filter(aUser => aUser.username === data.username)[0].clientID : 0;
     var d = new Date();
     var datetime = d.toLocaleString();
 
@@ -79,7 +79,7 @@ io.on('connection', (socket) => {
 
   socket.on('chat message', (data) => {
 
-    let recipientID = connectedUsers.filter(aUser => aUser.username.toLowerCase() === data.username.toLowerCase()).length ? connectedUsers.filter(aUser => aUser.username.toLowerCase() === data.username.toLowerCase())[0].clientID : 0;
+    let recipientID = connectedUsers.filter(aUser => aUser.username === data.username).length ? connectedUsers.filter(aUser => aUser.username === data.username)[0].clientID : 0;
     var d = new Date();
     var datetime = d.toLocaleString();
 
