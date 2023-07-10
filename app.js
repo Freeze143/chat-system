@@ -8,7 +8,7 @@ const io = require("socket.io")(server,
   {
     allowEIO3: true, // false by default
     cors: {
-      origin: "http://localhost:4200",
+      origin: "http://localhost:8080",
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
       credentials: true
