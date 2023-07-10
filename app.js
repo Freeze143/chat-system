@@ -8,11 +8,12 @@ const io = require("socket.io")(server,
   {
     allowEIO3: true, // false by default
     cors: {
-      origin: "http://localhost:8080",
+      origin: "http://localhost:4200",
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
       credentials: true
-    }
+    },
+    upgradeTimeout: 30000
   });
 
 var path = require('path');
@@ -29,6 +30,8 @@ var connectedUsers = [];
 io.on('connection', (socket) => {
 
   socket.on('send-img', (data) => {
+
+    console.log(data)
     
     let recipientID = connectedUsers.filter(aUser => aUser.username === data.username).length ? connectedUsers.filter(aUser => aUser.username === data.username)[0].clientID : 0;
     var d = new Date();
@@ -41,7 +44,9 @@ io.on('connection', (socket) => {
         senderName: data.username,
         msg: data.msg,
         userID : socket.id,
-        datetime:datetime
+        datetime:datetime,
+        name:data.name
+        
       });
    
   });
@@ -73,8 +78,9 @@ io.on('connection', (socket) => {
 
   });
   
-  socket.on('disconnect', () => {
+  socket.on('disconnect', (error) => {
     console.log('user disconnected');
+    console.log(error);
   });
 
   socket.on('chat message', (data) => {
