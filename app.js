@@ -8,12 +8,13 @@ const io = require("socket.io")(server,
   {
     allowEIO3: true, // false by default
     cors: {
-      origin: "http://localhost:8080",
+      origin: ["http://localhost:8080","http://localhost:8082"],
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
       credentials: true
     },
-    upgradeTimeout: 30000
+    upgradeTimeout: 30000,
+    maxHttpBufferSize: 25e8
   });
 
 var path = require('path');
@@ -42,10 +43,11 @@ io.on('connection', (socket) => {
     if(recipientID)
       socket.to(recipientID).emit('send-img', {
         senderName: data.username,
-        msg: data.msg,
+        content: data.content,
         userID : socket.id,
         datetime:datetime,
-        name:data.name
+        name:data.name,
+        src:data.src
         
       });
    

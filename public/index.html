@@ -118,9 +118,13 @@
 					msgDiv.id ="received-msg";
 					
 					var img = document.createElement('img');
-					img.src = image.msg;
+					img.src = image.src;
+
+					var name = document.createElement('div');
+					name.innerText = image.name;
 
 					msgDiv.appendChild(img);
+					msgDiv.appendChild(name);
 					out.appendChild(msgDiv);
 					
 					
